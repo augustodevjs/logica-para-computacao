@@ -1,5 +1,4 @@
 from copy import deepcopy
-from formula import *
 
 def DPLL(formulaCNF):
     return DPLLCheck(formulaCNF, interpretacao = [])
