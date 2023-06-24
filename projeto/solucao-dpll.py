@@ -1,30 +1,39 @@
-import time
 from algoritmoDPLL import *
 
 
 def abrirTabelaCNF(CNF):
+    # Abre o caminho do arquivo
     with open(CNF) as arquivo:
         grid = []
         cnfInf = []
-        
+
+        # pega cada linha do arquivo
         for linha in arquivo:
+            # pega a linha que começa com p que no caso é a segunda linha
             if linha[0] == 'p':
                 linha = linha.split(' ')
 
+                # pega a quantidade de atômicas e cláusulas e guarda dentro da array "cnfInf".
                 cnfInf.append(int(linha[2]))
                 cnfInf.append(int(linha[3]))
 
+            # basicamente pega as clásulas com as formulas
             if linha[0] != 'c' and linha[0] != 'p' and linha[0] != '%' and linha[0] != '0' and linha[0] != ' ':
                 linhaInt = []
                 
-                linha = linha.split(' ')
-                linha.pop(-1)
+                linha = linha.split(' ') # cria o array separado por ' '
+                linha.pop(-1) # remove o "0" de dentro da array
+
+                # fica dessa forma por exemplo: ['-1', '3']
                 
                 for elemento in linha:
                     linhaInt.append(int(elemento))
                 
+                # basicamente faz um append em cada linha e coloca dentro da array grid.
                 grid.append(linhaInt)
-
+            
+        # cnfInf -- retorna a quantidade de atômicas e cláusulas.
+        # grid --  retorna uma array de cláusulas.
         return [grid, cnfInf]
     
     
@@ -50,8 +59,6 @@ def solucao(arquivo):
         
         criarArquivosDIMACS(inf, resultado)
 
-start_time = time.time()
-
 # FORMULAS INSATISFATÍVEIS
 solucao('TestesDIMACSCNF/Fórmulas Insatisfatíveis/cnf-02-04.cnf')
 
@@ -59,4 +66,3 @@ solucao('TestesDIMACSCNF/Fórmulas Insatisfatíveis/cnf-02-04.cnf')
 solucao('TestesDIMACSCNF/Fórmulas Satisfatíveis/cnf-03-02.cnf')
 solucao('TestesDIMACSCNF/Fórmulas Satisfatíveis/cnf-03-04.cnf')
 
-end_time = time.time()
