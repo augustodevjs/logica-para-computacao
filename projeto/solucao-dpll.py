@@ -65,4 +65,3 @@ solucao('TestesDIMACSCNF/Fórmulas Insatisfatíveis/cnf-02-04.cnf')
 # FORMULAS SATISFATÍVEIS
 solucao('TestesDIMACSCNF/Fórmulas Satisfatíveis/cnf-03-02.cnf')
 solucao('TestesDIMACSCNF/Fórmulas Satisfatíveis/cnf-03-04.cnf')
-

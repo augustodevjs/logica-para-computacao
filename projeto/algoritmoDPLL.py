@@ -5,6 +5,7 @@ def DPLL(formulaCNF):
 
 
 def DPLLCheck(formulaCNF, interpretacao):
+    # cria uma copia da formulaCNF para garantir a integridade dos dados
     copiaCNF = deepcopy(formulaCNF)
     copiaCNF, interpretacao = propagacaoDeUnidade(copiaCNF, interpretacao)
     

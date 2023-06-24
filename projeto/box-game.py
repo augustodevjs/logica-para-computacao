@@ -1,5 +1,4 @@
 import csv
-import time
 from algoritmoDPLL import *
 
 
@@ -41,7 +40,7 @@ def solucao(arquivo):
     formulaDIMACS, numeroAtomicas, listaAtomicasNumeros = transformarEmDIMACS(arquivo)
     criarArquivosDIMACS(formulaDIMACS, numeroAtomicas)
     
-    arquivoDIMACS = abrirTabelaCNF('dados-boxgame.txt')
+    arquivoDIMACS = abrirTabelaCNF('BoxGameCNF/dados-boxgame.txt')
     resultado = DPLL(arquivoDIMACS)
 
     print(resultado)
@@ -97,7 +96,7 @@ def criarArquivosDIMACS(formulaDIMACS, numeroAtomicas):
     for clausula in formulaDIMACS:
         numeroClausulas += 1
     
-    with open("dados-boxgame.txt", "w") as arquivo:
+    with open("BoxGameCNF/dados-boxgame.txt", "w") as arquivo:
         arquivo.writelines(f'p cnf {numeroAtomicas} {numeroClausulas}\n')
 
         for clausula in formulaDIMACS:
@@ -109,9 +108,4 @@ def criarArquivosDIMACS(formulaDIMACS, numeroAtomicas):
     return
 
 
-print('=========================== SOLUCAO ===========================')
-start_time = time.time()
-solucao(criarClausulas('boxgame.txt'))
-
-end_time = time.time()
-print('\nTEMPO DE EXECUCAO:', end_time - start_time ,'\n')
+solucao(criarClausulas('BoxGameCNF/boxgame.txt'))
