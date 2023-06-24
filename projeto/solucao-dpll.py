@@ -38,10 +38,13 @@ def abrirTabelaCNF(CNF):
     
     
 def criarArquivosDIMACS(inf, resultado):
+    # Cria cada arquivo cnf pela quantidade de atômicas e cláusulas dentro da pasta soluções de TestesDIMACSCNF
     with open(f"TestesDIMACSCNF/Solucoes/cnf-{inf[0]}-{inf[1]}.cnf", "w") as arquivo:
         if resultado == False:
+            # Se não for satisfátivel vai aparacer no arquivo esse texto
             arquivo.writelines('UNSATISFIABLE')
         else:
+            # Se for satisfátivel vai aparacer no arquivo esse texto com os valores que deixam a expressão satisfátivel.
             inf = ''
             for elemento in resultado:
                 inf = inf + f'{elemento} '
@@ -50,13 +53,10 @@ def criarArquivosDIMACS(inf, resultado):
     
 def solucao(arquivo):
         arquivoDIMACS, inf = abrirTabelaCNF(arquivo)
-        resultado = DPLL(arquivoDIMACS)
+        # essa função vai retornar a lógica pra dizer se satisfativel ou não, se não for vai retornar falso e se for satisfátivel vai retornar o valor que deixam a formula satisfativel
+        resultado = DPLL(arquivoDIMACS) 
         
-        if (resultado == False): 
-            print('UNSATISFATIBLE\n')
-        else:
-            print(f'RESULTADO SATISFATiVEL: {resultado}\n')
-        
+        # essa função vai criar os arquivos para cada exemplo da cnf
         criarArquivosDIMACS(inf, resultado)
 
 # FORMULAS INSATISFATÍVEIS
