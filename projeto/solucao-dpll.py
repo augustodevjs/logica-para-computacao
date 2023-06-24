@@ -13,7 +13,8 @@ def abrirTabelaCNF(CNF):
             if linha[0] == 'p':
                 linha = linha.split(' ')
 
-                # pega a quantidade de atômicas e cláusulas e guarda dentro da array "cnfInf".
+                # pega a quantidade de atômicas e cláusulas e guarda dentro da 
+                # array "cnfInf".
                 cnfInf.append(int(linha[2]))
                 cnfInf.append(int(linha[3]))
 
@@ -29,7 +30,8 @@ def abrirTabelaCNF(CNF):
                 for elemento in linha:
                     linhaInt.append(int(elemento))
                 
-                # basicamente faz um append em cada linha e coloca dentro da array grid.
+                # basicamente faz um append em cada linha e coloca dentro da 
+                # array grid.
                 grid.append(linhaInt)
             
         # cnfInf -- retorna a quantidade de atômicas e cláusulas.
@@ -38,13 +40,15 @@ def abrirTabelaCNF(CNF):
     
     
 def criarArquivosDIMACS(inf, resultado):
-    # Cria cada arquivo cnf pela quantidade de atômicas e cláusulas dentro da pasta soluções de TestesDIMACSCNF
+    # Cria cada arquivo cnf pela quantidade de atômicas e cláusulas dentro da 
+    # pasta soluções de TestesDIMACSCNF
     with open(f"TestesDIMACSCNF/Solucoes/cnf-{inf[0]}-{inf[1]}.cnf", "w") as arquivo:
         if resultado == False:
             # Se não for satisfátivel vai aparacer no arquivo esse texto
             arquivo.writelines('UNSATISFIABLE')
         else:
-            # Se for satisfátivel vai aparacer no arquivo esse texto com os valores que deixam a expressão satisfátivel.
+            # Se for satisfátivel vai aparacer no arquivo esse texto com os 
+            # valores que deixam a expressão satisfátivel.
             inf = ''
             for elemento in resultado:
                 inf = inf + f'{elemento} '
@@ -53,7 +57,9 @@ def criarArquivosDIMACS(inf, resultado):
     
 def solucao(arquivo):
         arquivoDIMACS, inf = abrirTabelaCNF(arquivo)
-        # essa função vai retornar a lógica pra dizer se satisfativel ou não, se não for vai retornar falso e se for satisfátivel vai retornar o valor que deixam a formula satisfativel
+        # essa função vai retornar a lógica pra dizer se satisfativel ou não, 
+        # se não for vai retornar falso e se for satisfátivel vai retornar o 
+        # valor que deixam a formula satisfativel
         resultado = DPLL(arquivoDIMACS) 
         
         # essa função vai criar os arquivos para cada exemplo da cnf
